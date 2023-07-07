@@ -1,23 +1,12 @@
-#error-page {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  .error-message {
-    color: gray;
-  }
-}
 .App {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
   height: 100vh;
   .stepper {
-    flex-grow: 0.2;
+    width: 30%;
   }
   main {
-    flex-grow: 0.8;
+    width: 70%;
   }
 }
