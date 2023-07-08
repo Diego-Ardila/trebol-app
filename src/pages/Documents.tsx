@@ -7,11 +7,6 @@ export async function loader() {
 }
 
 function Documents() {
-  const { setStepId } = useContext(GlobalContext);
-
-  useEffect(() => {
-    setStepId(2)
-  }, [])
 
   return (
     <div className="documents">

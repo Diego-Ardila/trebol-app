@@ -8,8 +8,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ErrorPage from './components/global/ErrorPage';
-import Enterprise from './pages/Enterprise';
-import Documents, { loader as documentsLoader } from './pages/Documents';
 import Home from './pages/Home';
 
 const router = createBrowserRouter([
@@ -22,17 +20,6 @@ const router = createBrowserRouter([
     path: "/:clientId",
     element: <App />,
     errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "/:clientId",
-        element: <Enterprise />,
-      },
-      {
-        path: "documents/:enterpriseId",
-        element: <Documents />,
-        loader: documentsLoader
-      }
-    ]
   },
 ]);
 

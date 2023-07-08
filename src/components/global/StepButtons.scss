@@ -1,0 +1,28 @@
+@import '../../styles/variables';
+
+.step-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+  button {
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(197, 197, 197, 0.521);
+    }
+  }
+  .prev-btn {
+    color: gray;
+    border-right: 1px solid gray;
+  }
+  .next-btn {
+    color: $primary-color;
+    margin-right: 20px;
+  }
+}

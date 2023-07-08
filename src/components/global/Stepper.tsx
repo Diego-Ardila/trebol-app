@@ -2,32 +2,14 @@ import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { Step, StepStatus } from '../../utils/Types';
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { GlobalContext } from '../../utils/GlobalContext';
+import StepsObject from '../../utils/Steps.json';
 import './Stepper.scss';
 
 function Stepper() {
   const { stepId } = useContext(GlobalContext);
 
   const steps: () => Step[] = useCallback(() => {
-    const stepsTemplate: Step[] = [
-      {
-        id: 1,
-        name: "Datos empresa",
-        description: "Formulario de datos basicos de la empresa",
-        status: "pending"
-      },
-      {
-        id: 2,
-        name: "Documentos",
-        description: "Carga de documentos",
-        status: "pending"
-      },
-      {
-        id: 3,
-        name: "Representantes",
-        description: "Comprobación de documentos",
-        status: "pending"
-      }
-    ];
+    const stepsTemplate = StepsObject as Step[];
     let isActiveFound: boolean = false;
 
     return stepsTemplate.map((step: Step) => {

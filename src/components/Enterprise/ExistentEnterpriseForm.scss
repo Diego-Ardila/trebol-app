@@ -1,0 +1,8 @@
+@use '../../styles/mixins';
+
+.existent-enterprise-form {
+  @include mixins.enterprise-form-basic;
+  .enterprise-form-inputs {
+    flex-direction: column;
+  }
+}

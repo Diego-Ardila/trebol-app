@@ -1,0 +1,29 @@
+.enterprise {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  section {
+    button {
+      margin: 5px;
+    }
+  }
+  .text-field {
+    margin: 20px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .enterprise {
+    width: 100%;
+    justify-content: center;
+    .enterprise-form,
+    .existent-enterprise-form {
+      width: 100%;
+      .enterprise-form-inputs {
+        flex-direction: column;
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 .App {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   height: 100vh;
@@ -7,6 +8,21 @@
     width: 30%;
   }
   main {
-    width: 70%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 450px) {
+  .App {
+    flex-direction: column;
+    .stepper {
+      width: 80%;
+    }
+    .enterprise-form,
+    .existent-enterprise-form {
+      .step-buttons {
+        justify-content: center;
+      }
+    }
   }
 }

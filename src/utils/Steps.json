@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Datos empresa",
+    "description": "Formulario de datos basicos de la empresa",
+    "status": "pending"
+  },
+  {
+    "id": 2,
+    "name": "Documentos",
+    "description": "Carga de documentos",
+    "status": "pending"
+  },
+  {
+    "id": 3,
+    "name": "Revisión",
+    "description": "Comprobación de documentos",
+    "status": "pending"
+  }
+]

@@ -1,12 +1,5 @@
-@mixin step-icon-number {
-  width: 24px;
-  height: 24px;
-  border-radius: 12px;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+@use '../../styles/mixins';
+@import '../../styles/variables';
 
 .stepper {
   display: flex;
@@ -37,9 +30,9 @@
       right: -14px;
       top: 2px;
       &--active {
-        @include step-icon-number;
+        @include mixins.step-icon-number;
         border: 1px solid white;
-        background-color: dodgerblue;
+        background-color: $primary-color;
         color: white;
       }
       &--passed {
@@ -48,10 +41,10 @@
         background-color: white;
       }
       &--pending {
-        @include step-icon-number;
-        border: 1px solid dodgerblue;
+        @include mixins.step-icon-number;
+        border: 1px solid $primary-color;
         background-color: white;
-        color: dodgerblue;
+        color: $primary-color;
       }
     }
   }

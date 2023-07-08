@@ -1,3 +1,5 @@
+import { SetStateAction, Dispatch } from 'react';
+
 export type StepStatus = "active" | "passed" | "pending"
 
 export type Step = {
@@ -9,5 +11,19 @@ export type Step = {
 
 export type GlobalContextType = {
   stepId: number,
-  setStepId: (x: number) => void
+  setStepId: Dispatch<SetStateAction<number>>
+}
+
+export type EnterpriseProps = {
+  isNew: boolean
+}
+
+export type EnterpriseInfoType = {
+  name: string,
+  id: number | string,
+  email: string
+}
+
+export type ExistentEnterpriseInfoType = {
+  id: number | string
 }

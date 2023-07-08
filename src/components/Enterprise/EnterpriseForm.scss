@@ -1,0 +1,5 @@
+@use '../../styles/mixins';
+
+.enterprise-form {
+  @include mixins.enterprise-form-basic;
+}

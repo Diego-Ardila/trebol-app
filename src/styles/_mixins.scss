@@ -1,0 +1,19 @@
+@mixin enterprise-form-basic {
+  margin-bottom: 20px;
+  min-width: 80%;
+  .enterprise-form-inputs {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@mixin step-icon-number {
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
