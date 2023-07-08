@@ -1,12 +1,12 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { Step, StepStatus } from '../../utils/Types';
 import { BsFillCheckCircleFill } from "react-icons/bs";
-import { GlobalContext } from '../../utils/GlobalContext';
+import { useGlobalState } from '../../utils/GlobalContext';
 import StepsObject from '../../utils/Steps.json';
 import './Stepper.scss';
 
 function Stepper() {
-  const { stepId } = useContext(GlobalContext);
+  const { state: {stepId} } = useGlobalState();
 
   const steps: () => Step[] = useCallback(() => {
     const stepsTemplate = StepsObject as Step[];

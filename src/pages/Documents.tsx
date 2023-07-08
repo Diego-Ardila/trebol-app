@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 import './Documents.scss';
-import { GlobalContext } from '../utils/GlobalContext';
 
 export async function loader() {
   return {};

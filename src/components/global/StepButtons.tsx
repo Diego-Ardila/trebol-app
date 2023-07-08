@@ -1,15 +1,15 @@
 import React, {useContext, useCallback} from 'react';
 import './StepButtons.scss';
-import { GlobalContext } from '../../utils/GlobalContext';
+import { useGlobalState } from '../../utils/GlobalContext';
 import StepsObject from '../../utils/Steps.json';
 
 function StepButtons() {
-  const { stepId, setStepId } = useContext(GlobalContext);
+  const { dispatch, state: {stepId} } = useGlobalState();
   
   return (
     <div className="step-buttons">
       {stepId > 1 ? (
-        <button className="prev-btn" onClick={() => setStepId((prev: number) => prev - 1)}>
+        <button className="prev-btn" onClick={() => dispatch({type: 'DECREMENT_STEP_ID'})}>
           Anterior
         </button>
       ): null}

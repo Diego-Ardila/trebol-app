@@ -3,9 +3,11 @@ import './EnterpriseForm.scss';
 import { TextField } from '@mui/material';
 import StepButtons from '../global/StepButtons';
 import { EnterpriseInfoType, EnterpriseProps } from '../../utils/Types';
-import { GlobalContext } from '../../utils/GlobalContext';
+import { useGlobalState } from '../../utils/GlobalContext';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+
+import Enterprise from '../../utils/Template.json';
 
 const validationSchema = Yup.object({
   id: Yup.number().required('El campo Nit es requerido').integer('Solo puedes ingresar números'),
@@ -14,7 +16,7 @@ const validationSchema = Yup.object({
 });
 
 function EnterpriseForm() {
-  const { stepId, setStepId } = useContext(GlobalContext);
+  const { dispatch } = useGlobalState();
   const initialValues: EnterpriseInfoType = {
     id: '',
     name: '',
@@ -24,6 +26,9 @@ function EnterpriseForm() {
   const handleSubmit = (values: EnterpriseInfoType) => {
     console.log('Formulario válido');
     console.log(values);
+
+    dispatch({type: 'SET_ENTERPRISE', payload: Enterprise});
+    dispatch({type: 'INCREMENT_STEP_ID'});
   };
 
   return (

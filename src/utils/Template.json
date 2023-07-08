@@ -1,0 +1,27 @@
+{
+  "id": 1,
+  "name": "Empresa 1",
+  "email": "empresa@empresa1.com",
+  "template": [
+    {
+      "id": 1,
+      "name": "Constancia situación fiscal",
+      "accept": "pdf"
+    },
+    {
+      "id": 2,
+      "name": "Acta constitutiva",
+      "accept": "pdf"
+    },
+    {
+      "id": 3,
+      "name": "Poder del apoderado",
+      "accept": "pdf"
+    },
+    {
+      "id": 4,
+      "name": "Comprobante de domicilio",
+      "accept": "image/*,.pdf"
+    }
+  ]
+}
