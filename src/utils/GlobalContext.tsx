@@ -5,7 +5,7 @@ export const defaultEnterprise = {
   id: 0,
   name: '',
   email: '',
-  template: [
+  templates: [
     {
       id: 0,
       name: '',
@@ -14,13 +14,15 @@ export const defaultEnterprise = {
   ]
 }
 
-type Action = {type: 'INCREMENT_STEP_ID'} | {type: 'DECREMENT_STEP_ID'} | {type: 'SET_ENTERPRISE', payload: EnterpriseType}
+type Action = { type: 'INCREMENT_STEP_ID' } |
+{ type: 'DECREMENT_STEP_ID' } |
+{ type: 'SET_ENTERPRISE', payload: EnterpriseType }
 type Dispatch = (action: Action) => void
-type State = {stepId: number, enterprise: EnterpriseType}
-type CountProviderProps = {children: React.ReactNode}
+type State = { stepId: number, enterprise: EnterpriseType }
+type CountProviderProps = { children: React.ReactNode }
 
 const GlobalStateContext = React.createContext<
-  {state: State; dispatch: Dispatch} | undefined
+  { state: State; dispatch: Dispatch } | undefined
 >(undefined)
 
 function globalReducer(state: State, action: Action) {
@@ -49,9 +51,9 @@ function globalReducer(state: State, action: Action) {
   }
 }
 
-function GlobalStateProvider({children}: CountProviderProps) {
-  const [state, dispatch] = React.useReducer(globalReducer, {stepId: 1, enterprise: defaultEnterprise})
-  const value = {state, dispatch}
+function GlobalStateProvider({ children }: CountProviderProps) {
+  const [state, dispatch] = React.useReducer(globalReducer, { stepId: 1, enterprise: defaultEnterprise })
+  const value = { state, dispatch }
 
   return (
     <GlobalStateContext.Provider value={value}>
@@ -68,4 +70,4 @@ function useGlobalState() {
   return context
 }
 
-export {GlobalStateProvider, useGlobalState}
+export { GlobalStateProvider, useGlobalState }

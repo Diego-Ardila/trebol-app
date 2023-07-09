@@ -6,10 +6,10 @@ export type EnterpriseType = {
   name: string,
   id: number | string,
   email: string,
-  template: FileTemplate[]
+  templates: Template[]
 }
 
-export type FileTemplate = {
+export type Template = {
   id: number,
   name: string,
   accept: string,
@@ -21,10 +21,6 @@ export type Step = {
   name: string,
   description: string,
   status: StepStatus
-}
-
-export type EnterpriseProps = {
-  isNew: boolean
 }
 
 export type EnterpriseInfoType = {

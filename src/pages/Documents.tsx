@@ -1,15 +1,12 @@
 import React, { useContext, useEffect } from 'react';
 import './Documents.scss';
-
-export async function loader() {
-  return {};
-}
+import FileUploadInputs from '../components/Documents/FileUploadInputs';
 
 function Documents() {
 
   return (
     <div className="documents">
-      <h1>Documents</h1>
+      <FileUploadInputs />
     </div>
   );
 }

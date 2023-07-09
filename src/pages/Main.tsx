@@ -1,7 +1,8 @@
 import React from 'react';
 import Enterprise from './Enterprise';
-import Documents, { loader as documentsLoader } from './Documents';
-import { GlobalStateProvider, useGlobalState } from '../utils/GlobalContext';
+import Documents from './Documents';
+import { useGlobalState } from '../utils/GlobalContext';
+import { Alert } from '@mui/material';
 
 function Main() {
   const { state: { stepId } } = useGlobalState();  
@@ -18,7 +19,10 @@ function Main() {
   }
   
   return (
-    <main>
+    <main className='main-view'>
+      <Alert variant="outlined" severity="error">
+        This is an error alert — check it out!
+      </Alert>
       {componentMapper()}
     </main>
   );

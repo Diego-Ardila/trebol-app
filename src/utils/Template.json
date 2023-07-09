@@ -2,26 +2,26 @@
   "id": 1,
   "name": "Empresa 1",
   "email": "empresa@empresa1.com",
-  "template": [
+  "templates": [
     {
       "id": 1,
       "name": "Constancia situación fiscal",
-      "accept": "pdf"
+      "accept": ".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf"
     },
     {
       "id": 2,
       "name": "Acta constitutiva",
-      "accept": "pdf"
+      "accept": ".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf"
     },
     {
       "id": 3,
       "name": "Poder del apoderado",
-      "accept": "pdf"
+      "accept": ".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf"
     },
     {
       "id": 4,
       "name": "Comprobante de domicilio",
-      "accept": "image/*,.pdf"
+      "accept": ".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf"
     }
   ]
 }

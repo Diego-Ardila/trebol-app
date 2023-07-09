@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { TextField } from '@mui/material';
 import StepButtons from '../global/StepButtons';
-import { ExistentEnterpriseInfoType, EnterpriseProps, EnterpriseType } from '../../utils/Types';
+import { ExistentEnterpriseInfoType } from '../../utils/Types';
 import { useGlobalState } from '../../utils/GlobalContext';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -11,7 +11,7 @@ import Enterprise from '../../utils/Template.json';
 
 
 const validationSchema = Yup.object({
-  id: Yup.number().required('El campo Nit es requerido').integer('Solo puedes ingresar números'),
+  id: Yup.number().typeError('Solo puedes ingresar números').required('El campo Nit es requerido'),
 });
 
 function ExistentEnterpriseForm() {
@@ -46,7 +46,7 @@ function ExistentEnterpriseForm() {
               type="number"
               className='text-field'
               error={Boolean(errors.id)}
-              helperText={<ErrorMessage name="id" />}
+              helperText={errors.id}
             />
           </section>
           <StepButtons />

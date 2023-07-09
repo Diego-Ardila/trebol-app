@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import './EnterpriseForm.scss';
 import { TextField } from '@mui/material';
 import StepButtons from '../global/StepButtons';
-import { EnterpriseInfoType, EnterpriseProps } from '../../utils/Types';
+import { EnterpriseInfoType } from '../../utils/Types';
 import { useGlobalState } from '../../utils/GlobalContext';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
@@ -10,7 +10,7 @@ import * as Yup from 'yup';
 import Enterprise from '../../utils/Template.json';
 
 const validationSchema = Yup.object({
-  id: Yup.number().required('El campo Nit es requerido').integer('Solo puedes ingresar números'),
+  id: Yup.number().required('El campo Nit es requerido').typeError('Solo puedes ingresar números'),
   name: Yup.string().required('El campo Nombre es requerido'),
   email: Yup.string().email('Ingresa un email válido').required('El campo Email es requerido')
 });
