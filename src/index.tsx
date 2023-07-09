@@ -13,8 +13,7 @@ import Home from './pages/Home';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
-    errorElement: <ErrorPage />,
+    element: <ErrorPage />,
   },
   {
     path: "/:clientId",

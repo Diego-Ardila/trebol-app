@@ -9,6 +9,11 @@ export type EnterpriseType = {
   templates: Template[]
 }
 
+export type GlobalAlertType = {
+  isOpen: boolean,
+  message: string
+}
+
 export type Template = {
   id: number,
   name: string,

@@ -35,6 +35,7 @@ function FileInput({ template }: FileInputProps) {
       }
       //dispatch({type: 'SET_ENTERPRISE', payload: {...enterprise, templates: [...enterprise.templates] }})
     } catch(err) {
+      dispatch({type: 'SET_GLOBAL_ALERT', payload: {isOpen: true, message: 'Error en la carga, vuelve a intentarlo'}})
       console.error(err)
     }
     setIsLoading(false);

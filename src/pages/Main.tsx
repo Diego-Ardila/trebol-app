@@ -3,6 +3,7 @@ import Enterprise from './Enterprise';
 import Documents from './Documents';
 import { useGlobalState } from '../utils/GlobalContext';
 import { Alert } from '@mui/material';
+import CustomAlert from '../components/global/CustomAlert';
 
 function Main() {
   const { state: { stepId } } = useGlobalState();  
@@ -20,9 +21,7 @@ function Main() {
   
   return (
     <main className='main-view'>
-      <Alert variant="outlined" severity="error">
-        This is an error alert — check it out!
-      </Alert>
+      <CustomAlert />
       {componentMapper()}
     </main>
   );

@@ -14,13 +14,13 @@ export default function ErrorPage() {
     errorMessage = error;
   } else {
     console.error(error);
-    errorMessage = 'Unknown error';
+    errorMessage = 'Esta pagina no existe';
   }
 
   return (
     <div id='error-page'>
       <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
+      <p>Lo sentimos, se ha presentado un error.</p>
       <p className="error-message">
         <i>{errorMessage}</i>
       </p>
