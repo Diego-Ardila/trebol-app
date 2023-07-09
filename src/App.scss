@@ -15,14 +15,15 @@
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 600px) {
   .App {
     flex-direction: column;
     .stepper {
       width: 80%;
     }
     .enterprise-form,
-    .existent-enterprise-form {
+    .existent-enterprise-form,
+    .documents {
       .step-buttons {
         justify-content: center;
       }
