@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { TextField } from '@mui/material';
+import React, { useState } from 'react';
+import { CircularProgress, TextField } from '@mui/material';
 import StepButtons from '../global/StepButtons';
 import { ExistentEnterpriseInfoType } from '../../utils/Types';
 import { useGlobalState } from '../../utils/GlobalContext';
@@ -8,29 +8,51 @@ import * as Yup from 'yup';
 import './ExistentEnterpriseForm.scss';
 
 import Enterprise from '../../utils/Template.json';
+import { getEnterprise } from '../../api/Enterprise/EnterpriseApi';
 
 
 const validationSchema = Yup.object({
   id: Yup
-  .number()
-  .typeError('Solo puedes ingresar números')
-  .required('El campo Nit es requerido')
-  .integer('Solo puedes ingresar números positivos'),
+    .number()
+    .typeError('Solo puedes ingresar números')
+    .required('El campo Nit es requerido')
+    .integer('Solo puedes ingresar números positivos'),
 });
 
 function ExistentEnterpriseForm() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { dispatch } = useGlobalState();
+
   const initialValues: ExistentEnterpriseInfoType = {
     id: '',
   };
 
-  const handleSubmit = (values: ExistentEnterpriseInfoType) => {
-    console.log('Formulario válido');
-    console.log(values);
-
-    dispatch({type: 'SET_ENTERPRISE', payload: Enterprise});
-    dispatch({type: 'INCREMENT_STEP_ID'});
+  const handleSubmit = async (values: ExistentEnterpriseInfoType) => {
+    setIsLoading(true);
+    try {
+      const enterprise = await getEnterprise(values.id);
+      dispatch({ type: 'SET_ENTERPRISE', payload: enterprise });
+      dispatch({ type: 'INCREMENT_STEP_ID' });
+    } catch (error) {
+      let message = 'Error desconocido'
+      if (error instanceof Error) message = error.message
+      dispatch({
+        type: 'SET_GLOBAL_ALERT', payload: {
+          isOpen: true,
+          message
+        }
+      })
+    }
+    setIsLoading(false);
   };
+
+  if (isLoading) {
+    return (
+      <div className="loader-container">
+        <CircularProgress />
+      </div>
+    )
+  }
 
   return (
     <Formik
@@ -38,7 +60,7 @@ function ExistentEnterpriseForm() {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {({errors}) => (
+      {({ errors }) => (
         <Form className='existent-enterprise-form'>
           <section className="enterprise-form-inputs">
             <Field

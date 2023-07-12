@@ -15,10 +15,10 @@ export type TemplateType = {
 }
 
 export type EnterpriseType = {
-  name: string,
+  enterpriseName: string,
   id: number | string,
   email: string,
-  templateInputs: TemplateInput[]
+  templateInputs: TemplateInput[],
 }
 
 export type GlobalAlertType = {

@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import './EnterpriseForm.scss';
-import { TextField } from '@mui/material';
+import { CircularProgress, TextField } from '@mui/material';
 import StepButtons from '../global/StepButtons';
 import { EnterpriseInfoType } from '../../utils/Types';
 import { useGlobalState } from '../../utils/GlobalContext';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-
-import Enterprise from '../../utils/Template.json';
+import { createEnterprise } from '../../api/Enterprise/EnterpriseApi';
+import { useParams } from 'react-router-dom';
 
 const validationSchema = Yup.object({
   id: Yup
@@ -20,20 +20,43 @@ const validationSchema = Yup.object({
 });
 
 function EnterpriseForm() {
+  let { clientId } = useParams();
   const { dispatch } = useGlobalState();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const initialValues: EnterpriseInfoType = {
     id: '',
     name: '',
     email: ''
   };
 
-  const handleSubmit = (values: EnterpriseInfoType) => {
-    console.log('Formulario válido');
-    console.log(values);
-
-    dispatch({type: 'SET_ENTERPRISE', payload: Enterprise});
-    dispatch({type: 'INCREMENT_STEP_ID'});
+  const handleSubmit = async (values: EnterpriseInfoType) => {
+    setIsLoading(true);
+    try {
+      const enterprise = await createEnterprise({
+        id: values.id,
+        email: values.email,
+        enterpriseName: values.name,
+        client: clientId || ''
+      })
+      dispatch({type: 'SET_ENTERPRISE', payload: enterprise});
+      dispatch({type: 'INCREMENT_STEP_ID'});
+    } catch (error) {
+      dispatch({type: 'SET_GLOBAL_ALERT', payload: {
+        isOpen: true,
+        message: 'Error en la carga, vuelve a intentarlo'
+      }})
+    }
+    setIsLoading(false);
   };
+
+  if(isLoading) {
+    return (
+      <div className="loader-container">
+        <CircularProgress />
+      </div>
+    )
+  }
 
   return (
     <Formik

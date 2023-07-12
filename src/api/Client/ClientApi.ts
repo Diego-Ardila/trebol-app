@@ -7,8 +7,8 @@ export async function getClient(clientId: string): Promise<ClientType> {
       method: 'GET',
       baseURL: process.env.REACT_APP_SERVER,
       url: `client/${clientId}`
-    });
-    return response.data.enterprise;
+    });    
+    return response.data;
   } catch (error) {
     throw error;
   }

@@ -3,7 +3,7 @@ import { EnterpriseType, GlobalAlertType } from './Types'
 
 export const defaultEnterprise = {
   id: 0,
-  name: '',
+  enterpriseName: '',
   email: '',
   templateInputs: [
     {
