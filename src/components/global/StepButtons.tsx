@@ -3,18 +3,28 @@ import './StepButtons.scss';
 import { useGlobalState } from '../../utils/GlobalContext';
 import StepsObject from '../../utils/Steps.json';
 
-function StepButtons() {
+type StepButtonsProps = {
+  handleClick?: () => void
+}
+
+function StepButtons(props: StepButtonsProps) {
   const { dispatch, state: {stepId} } = useGlobalState();
+  const isFirst = stepId === 1;
+  const isLast = StepsObject.length === stepId;
   
   return (
     <div className="step-buttons">
-      {stepId > 1 ? (
-        <button className="prev-btn" onClick={() => dispatch({type: 'DECREMENT_STEP_ID'})}>
+      {!isFirst ? (
+        <button
+          className="prev-btn"
+          style={{borderRight: isLast ? 'none' : '1px solid gray'}}
+          onClick={() => dispatch({type: 'DECREMENT_STEP_ID'})}
+        >
           Anterior
         </button>
       ): null}
-      {StepsObject.length > stepId ? (
-      <button type="submit" className="next-btn">
+      {!isLast ? (
+      <button type="submit" className="next-btn" onClick={props.handleClick}>
         Siguiente
       </button>
       ) : null}

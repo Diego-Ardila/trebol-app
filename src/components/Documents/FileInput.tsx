@@ -5,6 +5,7 @@ import { Button, CircularProgress } from '@mui/material';
 import { AiFillCheckCircle, AiOutlineDelete, AiOutlineUpload } from "react-icons/ai";
 import { useGlobalState } from '../../utils/GlobalContext';
 import { deleteFile, saveFile } from '../../api/Enterprise/EnterpriseApi';
+import { formatBytes } from '../../utils/FormatBytes';
 
 type FileInfo = {
   name: string;
@@ -74,7 +75,7 @@ function FileInput({ templateInput }: FileInputProps) {
             <strong>Nombre de archivo:</strong> {fileInfo.name}
           </span>
           <span>
-            <strong>Tamaño:</strong> {fileInfo.size} bytes
+            <strong>Tamaño:</strong> {formatBytes(fileInfo.size)}
           </span>
           <span>
             <strong>Tipo:</strong> {fileInfo.type}

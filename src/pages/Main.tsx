@@ -5,6 +5,7 @@ import { useGlobalState } from '../utils/GlobalContext';
 import CustomAlert from '../components/global/CustomAlert';
 import { getClient } from '../api/Client/ClientApi';
 import { useNavigate, useParams } from 'react-router-dom';
+import Review from './Review';
 
 function Main() {
   let { clientId } = useParams();
@@ -32,6 +33,8 @@ function Main() {
         return <Enterprise />
       case 2: 
         return <Documents />
+      case 3: 
+        return <Review />
       default:
         return null;
     }

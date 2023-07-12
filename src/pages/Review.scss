@@ -1,0 +1,25 @@
+@import '../styles/variables';
+
+.review {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 50px;
+  max-width: 800px;
+  .review-enterprise-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    strong {
+      color: $primary-color;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .review {
+    padding: 10px;
+  }
+}
