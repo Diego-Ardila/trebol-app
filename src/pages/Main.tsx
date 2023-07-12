@@ -1,12 +1,30 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Enterprise from './Enterprise';
 import Documents from './Documents';
 import { useGlobalState } from '../utils/GlobalContext';
-import { Alert } from '@mui/material';
 import CustomAlert from '../components/global/CustomAlert';
+import { getClient } from '../api/Client/ClientApi';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function Main() {
-  const { state: { stepId } } = useGlobalState();  
+  let { clientId } = useParams();
+  const navigate = useNavigate();
+
+  const { state: { stepId } } = useGlobalState(); 
+
+  useEffect(() => {
+    const getClientWrapper = async () => {      
+      try {
+        if(clientId) {
+          await getClient(clientId);
+        }
+      } catch (error) {
+        navigate('/')
+        console.error(error);
+      }
+    }
+    getClientWrapper();
+  }, [])
 
   const componentMapper = () => {
     switch (stepId) {

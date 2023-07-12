@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent } from 'react';
 import { useGlobalState } from '../../utils/GlobalContext';
 import './FileUploadInputs.scss';
-import { Template } from '../../utils/Types';
+import { TemplateInput } from '../../utils/Types';
 import FileInput from './FileInput';
 
 function FileUploadInputs() {
@@ -9,10 +9,10 @@ function FileUploadInputs() {
 
   return (
     <div className="file-upload-container">
-      {enterprise.templates.map((template: Template) => (
+      {enterprise.templateInputs.map((templateInput: TemplateInput) => (
         <FileInput
-          key={template.id}
-          template={template}
+          key={templateInput.id}
+          templateInput={templateInput}
         />
       ))}
     </div>

@@ -2,7 +2,7 @@
   "id": 1,
   "name": "Empresa 1",
   "email": "empresa@empresa1.com",
-  "templates": [
+  "templateInputs": [
     {
       "id": 1,
       "name": "Constancia situación fiscal",

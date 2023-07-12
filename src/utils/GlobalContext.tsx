@@ -5,7 +5,7 @@ export const defaultEnterprise = {
   id: 0,
   name: '',
   email: '',
-  templates: [
+  templateInputs: [
     {
       id: 0,
       name: '',

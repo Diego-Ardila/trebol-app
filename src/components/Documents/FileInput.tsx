@@ -1,5 +1,5 @@
 import React, { useRef, ChangeEvent, useState } from 'react';
-import { Template } from '../../utils/Types';
+import { TemplateInput } from '../../utils/Types';
 import './FileInput.scss'
 import { Button, CircularProgress } from '@mui/material';
 import { AiFillCheckCircle, AiOutlineDelete, AiOutlineUpload } from "react-icons/ai";
@@ -13,10 +13,10 @@ type FileInfo = {
 }
 
 type FileInputProps = {
-  template: Template;
+  templateInput: TemplateInput;
 }
 
-function FileInput({ template }: FileInputProps) {
+function FileInput({ templateInput }: FileInputProps) {
   const { state: { enterprise }, dispatch } = useGlobalState();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -27,13 +27,13 @@ function FileInput({ template }: FileInputProps) {
       if (event.target.files?.[0]) {
   
         const formData = new FormData();
-        formData.append('templateId', template.id.toString());
+        formData.append('templateInputId', templateInput.id.toString());
         formData.append('enterpriseId', enterprise.id.toString());
         formData.append('file', event.target.files?.[0]);
         
         const response = await saveFile(formData);
       }
-      //dispatch({type: 'SET_ENTERPRISE', payload: {...enterprise, templates: [...enterprise.templates] }})
+      //dispatch({type: 'SET_ENTERPRISE', payload: {...enterprise, templateInputs: [...enterprise.templateInputs] }})
     } catch(err) {
       dispatch({type: 'SET_GLOBAL_ALERT', payload: {isOpen: true, message: 'Error en la carga, vuelve a intentarlo'}})
       console.error(err)
@@ -50,11 +50,11 @@ function FileInput({ template }: FileInputProps) {
   }
 
   const renderFileInfo = () => {
-    if (template?.file) {
+    if (templateInput?.file) {
       const fileInfo: FileInfo = {
-        name: template.file.name,
-        size: template.file.size,
-        type: template.file.type,
+        name: templateInput.file.name,
+        size: templateInput.file.size,
+        type: templateInput.file.type,
       };
 
       return (
@@ -89,24 +89,24 @@ function FileInput({ template }: FileInputProps) {
   }
 
   return (
-    <div className={`file-input ${template?.file ? 'file-input--loaded' : 'file-input--no-file'}`}>
+    <div className={`file-input ${templateInput?.file ? 'file-input--loaded' : 'file-input--no-file'}`}>
       <label className="file-label">
-        {template.name}
-        {template?.file ? <AiFillCheckCircle /> : null}
+        {templateInput.name}
+        {templateInput?.file ? <AiFillCheckCircle /> : null}
       </label>
       <input
         ref={fileInputRef}
         type="file"
-        accept={template.accept}
-        onChange={(e) => handleFileChange(e, template.id)}
+        accept={templateInput.accept}
+        onChange={(e) => handleFileChange(e, templateInput.id)}
       />
       {renderFileInfo()}
-      {template?.file ? (
+      {templateInput?.file ? (
         <Button
           size="small"
           variant="outlined"
           startIcon={<AiOutlineDelete />}
-          onClick={() => handleFileRemove(template.id)}
+          onClick={() => handleFileRemove(templateInput.id)}
         >
           Eliminar
         </Button>

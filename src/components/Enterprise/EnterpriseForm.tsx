@@ -10,7 +10,11 @@ import * as Yup from 'yup';
 import Enterprise from '../../utils/Template.json';
 
 const validationSchema = Yup.object({
-  id: Yup.number().required('El campo Nit es requerido').typeError('Solo puedes ingresar números'),
+  id: Yup
+  .number()
+  .required('El campo Nit es requerido')
+  .typeError('Solo puedes ingresar números')
+  .integer('Solo puedes ingresar números positivos'),
   name: Yup.string().required('El campo Nombre es requerido'),
   email: Yup.string().email('Ingresa un email válido').required('El campo Email es requerido')
 });

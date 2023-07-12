@@ -11,7 +11,11 @@ import Enterprise from '../../utils/Template.json';
 
 
 const validationSchema = Yup.object({
-  id: Yup.number().typeError('Solo puedes ingresar números').required('El campo Nit es requerido'),
+  id: Yup
+  .number()
+  .typeError('Solo puedes ingresar números')
+  .required('El campo Nit es requerido')
+  .integer('Solo puedes ingresar números positivos'),
 });
 
 function ExistentEnterpriseForm() {

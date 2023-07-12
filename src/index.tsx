@@ -8,12 +8,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ErrorPage from './components/global/ErrorPage';
-import Home from './pages/Home';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <ErrorPage />,
+    element: <ErrorPage customMessage='El id de cliente no existe'/>,
   },
   {
     path: "/:clientId",

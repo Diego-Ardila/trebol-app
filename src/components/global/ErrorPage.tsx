@@ -1,7 +1,7 @@
 import { isRouteErrorResponse, useRouteError } from "react-router-dom";
 import "./ErrorPage.scss";
 
-export default function ErrorPage() {
+export default function ErrorPage(props: {customMessage?: string}) {
   const error = useRouteError();
   let errorMessage: string;
 
@@ -14,7 +14,7 @@ export default function ErrorPage() {
     errorMessage = error;
   } else {
     console.error(error);
-    errorMessage = 'Esta pagina no existe';
+    errorMessage = props.customMessage || 'Esta pagina no existe';
   }
 
   return (

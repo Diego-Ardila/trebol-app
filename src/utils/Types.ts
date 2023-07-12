@@ -2,11 +2,23 @@ import { SetStateAction, Dispatch } from 'react';
 
 export type StepStatus = "active" | "passed" | "pending"
 
+export type ClientType = {
+  id: number | string,
+  clientName: string,
+  template: TemplateType
+}
+
+export type TemplateType = {
+  id: number | string,
+  templateName: string,
+  inputs: TemplateInput[],
+}
+
 export type EnterpriseType = {
   name: string,
   id: number | string,
   email: string,
-  templates: Template[]
+  templateInputs: TemplateInput[]
 }
 
 export type GlobalAlertType = {
@@ -14,7 +26,7 @@ export type GlobalAlertType = {
   message: string
 }
 
-export type Template = {
+export type TemplateInput = {
   id: number,
   name: string,
   accept: string,
