@@ -9,10 +9,33 @@ type CreateEnterpriseBody = {
   client: string
 }
 
-export async function saveFile(body: FormData): Promise<EnterpriseType> {
+type ParamsType = {
+  enterpriseId: number | string,
+  templateInputId: number | string
+}
+
+export async function saveFile(body: FormData, { enterpriseId, templateInputId }: ParamsType): Promise<EnterpriseType> {
   try {
-    const response = await api.post('/api/enterprise', body);
-    return response.data.enterprise;
+    const response = await axios({
+      method: 'POST',
+      baseURL: process.env.REACT_APP_SERVER,
+      url: `enterprise/file/${enterpriseId}/${templateInputId}`,
+      data: body
+    });
+    return response.data
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function deleteFile({ enterpriseId, templateInputId }: ParamsType): Promise<EnterpriseType> {
+  try {
+    const response = await axios({
+      method: 'PUT',
+      baseURL: process.env.REACT_APP_SERVER,
+      url: `enterprise/delete/file/${enterpriseId}/${templateInputId}`,
+    });
+    return response.data
   } catch (error) {
     throw error;
   }

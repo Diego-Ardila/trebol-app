@@ -8,6 +8,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { createEnterprise } from '../../api/Enterprise/EnterpriseApi';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const validationSchema = Yup.object({
   id: Yup
@@ -42,10 +43,15 @@ function EnterpriseForm() {
       dispatch({type: 'SET_ENTERPRISE', payload: enterprise});
       dispatch({type: 'INCREMENT_STEP_ID'});
     } catch (error) {
-      dispatch({type: 'SET_GLOBAL_ALERT', payload: {
-        isOpen: true,
-        message: 'Error en la carga, vuelve a intentarlo'
-      }})
+      let message = 'Error desconocido'
+      if(axios.isAxiosError(error)) message = error.response?.data.message
+      else if (error instanceof Error) message = error.message
+      dispatch({
+        type: 'SET_GLOBAL_ALERT', payload: {
+          isOpen: true,
+          message
+        }
+      })
     }
     setIsLoading(false);
   };

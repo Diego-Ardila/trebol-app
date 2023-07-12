@@ -9,6 +9,7 @@ import './ExistentEnterpriseForm.scss';
 
 import Enterprise from '../../utils/Template.json';
 import { getEnterprise } from '../../api/Enterprise/EnterpriseApi';
+import axios from 'axios';
 
 
 const validationSchema = Yup.object({
@@ -35,7 +36,8 @@ function ExistentEnterpriseForm() {
       dispatch({ type: 'INCREMENT_STEP_ID' });
     } catch (error) {
       let message = 'Error desconocido'
-      if (error instanceof Error) message = error.message
+      if(axios.isAxiosError(error)) message = error.response?.data.message
+      else if (error instanceof Error) message = error.message
       dispatch({
         type: 'SET_GLOBAL_ALERT', payload: {
           isOpen: true,

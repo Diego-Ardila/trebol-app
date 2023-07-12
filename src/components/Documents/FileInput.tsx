@@ -4,7 +4,7 @@ import './FileInput.scss'
 import { Button, CircularProgress } from '@mui/material';
 import { AiFillCheckCircle, AiOutlineDelete, AiOutlineUpload } from "react-icons/ai";
 import { useGlobalState } from '../../utils/GlobalContext';
-import { saveFile } from '../../api/Enterprise/EnterpriseApi';
+import { deleteFile, saveFile } from '../../api/Enterprise/EnterpriseApi';
 
 type FileInfo = {
   name: string;
@@ -25,15 +25,15 @@ function FileInput({ templateInput }: FileInputProps) {
     setIsLoading(true);
     try {
       if (event.target.files?.[0]) {
-  
         const formData = new FormData();
-        formData.append('templateInputId', templateInput.id.toString());
-        formData.append('enterpriseId', enterprise.id.toString());
         formData.append('file', event.target.files?.[0]);
         
-        const response = await saveFile(formData);
+        const newEnterprise = await saveFile(formData, {
+          templateInputId: id,
+          enterpriseId: enterprise.id
+        });
+        dispatch({type: 'SET_ENTERPRISE', payload: newEnterprise})
       }
-      //dispatch({type: 'SET_ENTERPRISE', payload: {...enterprise, templateInputs: [...enterprise.templateInputs] }})
     } catch(err) {
       dispatch({type: 'SET_GLOBAL_ALERT', payload: {isOpen: true, message: 'Error en la carga, vuelve a intentarlo'}})
       console.error(err)
@@ -41,8 +41,19 @@ function FileInput({ templateInput }: FileInputProps) {
     setIsLoading(false);
   };
 
-  const handleFileRemove = (id: number) => {
-    console.log(id);
+  const handleFileRemove = async (id: number) => {
+    setIsLoading(true);
+    try {
+      const newEnterprise = await deleteFile({
+        templateInputId: id,
+        enterpriseId: enterprise.id
+      });
+      dispatch({type: 'SET_ENTERPRISE', payload: newEnterprise})
+    } catch(err) {
+      dispatch({type: 'SET_GLOBAL_ALERT', payload: {isOpen: true, message: 'Hubo un error, vuelve a intentarlo'}})
+      console.error(err)
+    }
+    setIsLoading(false);
   }
 
   const handleLoadClick = () => {
@@ -52,9 +63,9 @@ function FileInput({ templateInput }: FileInputProps) {
   const renderFileInfo = () => {
     if (templateInput?.file) {
       const fileInfo: FileInfo = {
-        name: templateInput.file.name,
+        name: templateInput.file.fileName,
         size: templateInput.file.size,
-        type: templateInput.file.type,
+        type: templateInput.file.contentType,
       };
 
       return (
@@ -82,7 +93,7 @@ function FileInput({ templateInput }: FileInputProps) {
 
   if(isLoading) {
     return (
-      <div className="file-input file-input--no-file">
+      <div className="file-input file-input--no-file file-input--loading">
         <CircularProgress />
       </div>
     )

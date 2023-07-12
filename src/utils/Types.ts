@@ -30,7 +30,13 @@ export type TemplateInput = {
   id: number,
   name: string,
   accept: string,
-  file?: File
+  file?: {
+    contentType: string,
+    fileName: string,
+    location: string,
+    key: string,
+    size: number
+  }
 }
 
 export type Step = {
